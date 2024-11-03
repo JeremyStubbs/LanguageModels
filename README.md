@@ -1,4 +1,5 @@
 **Large Language Models**
+
 I wrote this before architecture models were published in journals and Facebook made llama open source. 
 They evolved from translation models. The initial structure was an encoder-decoder. The encoder created word embedding tensors also called context vectors. These explained the positional relationship between words in a sentence. It is still helpful to think of large language models in terms of two parts, but I would rename them the reading comprehension stage and response production stage.
 
