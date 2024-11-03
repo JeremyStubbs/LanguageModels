@@ -1,22 +1,37 @@
 **Large Language Models**
 
 I wrote this before architecture models were published in journals and Facebook made llama open source. 
+
 They evolved from translation models. The initial structure was an encoder-decoder. The encoder created word embedding tensors also called context vectors. These explained the positional relationship between words in a sentence. It is still helpful to think of large language models in terms of two parts, but I would rename them the reading comprehension stage and response production stage.
+
 The concrete architecture details are explained in the foundational papers for language models. At each time step (after each output word): the following things are fed back into the model: the previous time step’s output (matrix representation of the word), the model's weights (in a matrix), and the context tensor for each input word. I think this is still the general architecture but on a much larger scale.
+
 It does not operate on Boolean logic, mathematics on 0s and 1s (although the transistor does), but rather statistics - groups of neurons perform complex statistical operations on matrices. Chatgpt told me this and Geoffrey Hinton is famous partly for modeling networks as Boltzman fields (stats stuff). The statistics determine 1) most likely meaning of a word or phrase and 2) how to craft a response.
+
 It is helpful to understand how the human mind works. If I tell you a story, you will (assuming average intelligence) be able to draw conclusions about events in it and make predictions about it. Much of this revolves around creating a visualization of the story. Your mind has much practice in visualizing things that happen and assigning all the appropriate physics to it (time, gravity, size and speed of things). Your brain works on rather simple neurons - threshold activation. It accomplishes this task by using extremely complex networks. I imagine the brain as a humming mass of web-like electricity. You cannot make these sorts of 3D connections on silicon, but you don’t need to because silicon neurons can do extremely complex matrix/statistical operations. But even with silicon there will be some similarity of network at least functionally to accomplish these tasks.
+
 The structures that make this possible are programmable memory units called long-short term memory networks and transformer networks. (Linear, relu, and dense neurons have supporting roles.) LSTM and transformers to store matrix values between time steps of the program. These matrices are analogous to the context vectors of early models, but now they must encompass a lot more information: content comprehension and style directives of the response (length, writing style, etc). In summary, words are passed in one by one and used to create matrices that encompass all their relationships.
+
 Side note: computer AI models have great difficulty understanding extremely long inputs - I doubt it could read a book in one sitting and make sense of it. It could break it up into parts and make sense of them together (which may or may not be different). Also AI models are extremely specialized: a language model cannot interpret videos and pictures (it is different code running on a different gpu). AGI is simply a collection of different models. Lastly, generative AI is simply a model that writes code to create pictures/videos. 
+
 I believe that the architecture of the first stage of the model is massively parallel input networks. There are many parallel networks built from LSTM and transformer networks together with other neurons. These networks are highly connected to each other and to the second stage of the model. Each receives every input word. The first stage “programs” both stages of the model to create a “world” that has all the expected dependencies and relationships. 
 The response production/second stage is likely also massively parallel networks and is likely connected perpendicularly to the reading comprehension/first stage. 
+
 As I mentioned, the first task is reading comprehension done by the first stage. The first stage makes sense of the prompt and provides directives to the second stage. Most likely all the words are processed by the first stage before the response production starts by the second stage. The first stage then passes matrix(ces) and weights to the second stage which tell it how to begin the response. The first stage sets the appropriate number of networks and their connections in both stages. The first stage can change default settings and increase the vocabulary of the model.
+
 The response production/second stage makes sentences one word at a time (I don’t think it’s physically possible to think of whole paragraphs at a time). It ensures flow and completion through feedforward and feedback mechanisms with both itself and the first stage after each word. There is constant evaluation of what the second stage is doing and readjustments of the matrix values, weights, and/or network connections of the second stage to accomplish its directives. 
 As far as the specific maths go, the statistical operations appropriately alter the values of the short term/programmable memory matrices and the adjustable weights. In addition, it selects the number of networks to use and their connections. In the second stage of the model, the matrices predict an appropriate next word.
+
 Both the reading comprehension and response production feedback regulation require abstraction and linguistic logic - the ability to understand every word available to use (including made up words) and put enough words together to understand complex concepts. Said another way, both to go from words to matrices and go from matrices to words you have to be able to create complex relationships between tensor representations of words. There must be some default settings that store the physics and definitions: values in the matrices and intra and inter connections in the networks. But these default values must be easily accessible because they can be changed. New relationships can be also be given in the prompt.
+
 Even a simple phrase like Jack and Jill are dating implies a whole Lotta information. Both stages set matrix values and create new relationships within and between networks to figure stuff out with linguistic logic, and express unique sentences dependent on those relationships. 
+
 Depending on the environment, different physics have to be implemented. By changing default matrix values?
+
 When you make up a word, are you expanding vocabulary/definition matrices? 
+
 But you can redefine words, so you must be able to easily access and change matrix values and intra and inter network relationships. For example, I can say “make a sentence with the word circular, but circular means flegblarg which is the state of being too sick to get drunk enough to pick up a slut at a bar.” And ChatGPT will spit out a perfect sentence.
+
 Abstraction example:
 We generalize sounds, sights, tastes, etc. well. AI must as well.
 E.g. a squirrel chitter is a high pitched sound. If something else makes that sound it also chitters.
@@ -32,6 +47,7 @@ The exact architecture now is a mystery because there’s still money to be made
 
 Why are the flow of the response and style variations coded in the weights of the model? There are an unlimited number of ways to construct a response. Style parameters: length of response, writing style/voice, sentence structure (noun or noun equivalent first in most, verb first in some commands, etc). You are not going to have a unique subnetwork for every kind of sentence. Variation is accomplished by changing the weights. These weights are determined by the input prompt and passed through the model. The difference between a weight and a regular matrix value is a weight is a coefficient used in the mathematical operations of a neuron, and a matrix value is a variable in those operations. 
 Long responses are accomplished by breaking the writing down into parts. Each sentence has a symbolic purpose: description, action, fact, etc. Together they create a paragraph which itself has a symbolic purpose. Paragraphs are just related sentences and stories are composed of related paragraphs. Building complex related stories is based on combining related symbols. This reflects actual writing: “The last sentence said — so —. The last paragraph said — so —. The whole story up to here says — and I want to say — so —. Stylistically, I want suspense before the climax so I will start with — then do —”. 
+
 How would you build something connected to an external database (like for a search engine):
 Say you wanted to access something outside the model’s memory units. The first and second stage pause what they are doing and a “query unit” asks a database for information. This “query unit” would then return the information to both stage. What’s interesting is that this “query unit” resembles an entire LLM. It has to figure out what knowledge is missing from the memory units, form an appropriate question, read the search results and formulate an input into the active program.
 
